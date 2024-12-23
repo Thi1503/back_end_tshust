@@ -30,9 +30,6 @@ public class ArticleService {
     }
 
     public List<Article> getArticleBySubTab(String subTab) {
-        System.out.println("Received subTab: " + subTab);
-        List<Article> articles = articleReponsitory.findAllBySubTab(subTab);
-        System.out.println("Found articles: " + articles.size());
-        return articles;
+        return articleReponsitory.findAllBySubTab(subTab);
     }
 }

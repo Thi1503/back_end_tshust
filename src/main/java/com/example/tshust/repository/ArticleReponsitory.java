@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 public interface ArticleReponsitory extends JpaRepository<Article,Integer> {
     List<Article> findAllByTab(String tab);
-
     List<Article> findAllBySubTab(String subTab);
-
 
 }
