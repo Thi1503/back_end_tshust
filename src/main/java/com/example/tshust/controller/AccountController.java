@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -32,12 +33,28 @@ public class AccountController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AccountLoginRequest request) {
         try {
+            // Gọi service để xác thực thông tin đăng nhập
             Account account = accountService.loginAccount(request.getEmail(), request.getPassword());
-            return ResponseEntity.ok("Login successful for user: " + account.getUsername());
+
+            // Trả về JSON với thông tin chi tiết
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "message", "Login successful",
+                    "user", Map.of(
+                            "id", account.getAccountId(),
+                            "username", account.getUsername(),
+                            "email", account.getEmail()
+                    )
+            ));
         } catch (RuntimeException e) {
-            return ResponseEntity.status(401).body(e.getMessage());
+            // Trả về lỗi nếu thông tin đăng nhập không chính xác
+            return ResponseEntity.status(401).body(Map.of(
+                    "status", "error",
+                    "message", e.getMessage()
+            ));
         }
     }
+
 
 
 
