@@ -40,4 +40,9 @@ public class ArticleService {
     public List<Article> searchArticlesByTitle(String keyword) {
         return articleReponsitory.findByTitleContainingIgnoreCase(keyword);
     }
+
+    public List<Article> getRecentArticlesByTab(String tab) {
+        return articleReponsitory.findTop3ByTabOrderByDateCreatedDesc(tab);
+    }
+
 }

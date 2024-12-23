@@ -31,6 +31,11 @@ public class ArticleController {
         return articleService.getArticleByTab(tab);
     }
 
+    @GetMapping("/recent-by-tab")
+    public List<Article> getRecentArticlesByTab(@RequestParam String tab) {
+        return articleService.getRecentArticlesByTab(tab);
+    }
+
 
     @GetMapping("/by-sub-tab")
     public List<Article> getArticlesBySubTab(@RequestParam String subTab) {
@@ -47,4 +52,6 @@ public class ArticleController {
     public List<Article> searchArticles(@RequestParam String keyword) {
         return articleService.searchArticlesByTitle(keyword);
     }
+
+
 }
