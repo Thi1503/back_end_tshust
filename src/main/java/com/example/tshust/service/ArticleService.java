@@ -32,4 +32,12 @@ public class ArticleService {
     public List<Article> getArticleBySubTab(String subTab) {
         return articleReponsitory.findAllBySubTab(subTab);
     }
+
+    public List<Article> getRecentArticles() {
+        return articleReponsitory.findTop5ByOrderByDateCreatedDesc();
+    }
+
+    public List<Article> searchArticlesByTitle(String keyword) {
+        return articleReponsitory.findByTitleContainingIgnoreCase(keyword);
+    }
 }

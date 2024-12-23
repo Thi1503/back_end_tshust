@@ -37,4 +37,14 @@ public class ArticleController {
         return articleService.getArticleBySubTab(subTab);
     }
 
+
+    @GetMapping("/recent-articles")
+    public List<Article> getRecentArticles() {
+        return articleService.getRecentArticles();
+    }
+
+    @GetMapping("/search")
+    public List<Article> searchArticles(@RequestParam String keyword) {
+        return articleService.searchArticlesByTitle(keyword);
+    }
 }
